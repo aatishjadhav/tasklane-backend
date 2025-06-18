@@ -7,7 +7,7 @@ const getProjects = async (req, res) => {
 
     for (let project of projects) {
       const tasks = await Tasks.find({ project: project._id })
-        .select("name status team owners tags timeToComplete")
+        .select("name status team owners tags timeToComplete createdAt")
         .populate("team", "name")
         .populate("owners", "name email")
         .lean();
